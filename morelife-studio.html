@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MORE+LiFE STUDIO</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C9A25D;--gold2:#E8C87A;--black:#080808;
+  --offwhite:#EFEFEF;--muted:rgba(239,239,239,.45);
+  --purple-ov:rgba(22,10,38,.6);
+}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-family:'Montserrat',sans-serif;color:var(--offwhite)}
+
+.snow{position:fixed;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.flake{position:absolute;top:-6px;border-radius:50%;background:rgba(255,255,255,.5);animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(110vh) translateX(20px);opacity:0}}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 36px;
+  background:linear-gradient(to bottom,rgba(8,8,8,.98) 70%,transparent);
+}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.45em;display:flex;align-items:center;gap:10px}
+.nav-logo em{color:var(--gold);font-style:normal}
+.crown{color:var(--gold)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(239,239,239,.5);text-decoration:none;transition:color .2s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-burger span{display:block;width:22px;height:1px;background:var(--offwhite);transition:.3s}
+
+.pages{position:fixed;inset:0;z-index:10}
+.page{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .6s ease,transform .6s ease;transform:translateY(20px);overflow:hidden}
+.page.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+
+/* HERO */
+#hero{background:var(--black)}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1400&q=80') center/cover;filter:brightness(.18) saturate(.5)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,var(--purple-ov),rgba(8,8,8,.85))}
+.hero-content{position:relative;z-index:5;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px}
+.hero-tag{font-size:9px;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.hero-tag::before,.hero-tag::after{content:'';display:block;width:30px;height:1px;background:var(--gold)}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(54px,10vw,130px);letter-spacing:.06em;line-height:.9;color:var(--offwhite);margin-bottom:8px}
+.hero-title span{color:var(--gold)}
+.hero-sub{font-size:11px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.hero-claim{font-size:12px;font-weight:200;letter-spacing:.12em;color:rgba(239,239,239,.35);margin-bottom:44px;font-style:italic}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:48px}
+.btn-primary{font-size:9.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--black);background:var(--gold);padding:15px 28px;border:none;cursor:pointer;text-decoration:none;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:background .2s,transform .15s;display:inline-block}
+.btn-primary:hover{background:var(--gold2)}
+.btn-outline{font-size:9.5px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);background:transparent;padding:14px 28px;border:1px solid rgba(201,162,93,.4);cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s;display:inline-block}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold2)}
+.hero-locs{display:flex;align-items:center;gap:20px;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(239,239,239,.3)}
+.loc-sep{color:rgba(201,162,93,.35)}
+.hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:8px;letter-spacing:.25em;color:rgba(239,239,239,.2);cursor:pointer}
+.scroll-line{width:1px;height:32px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollpulse 2s ease infinite}
+@keyframes scrollpulse{0%,100%{opacity:.3}50%{opacity:.9}}
+
+/* PANELS */
+#panels{background:var(--black)}
+.grid{display:flex;height:100%;width:100%}
+.panel{position:relative;width:25%;flex-shrink:0;overflow:hidden;cursor:pointer;transition:width .7s cubic-bezier(.77,0,.175,1);border-right:1px solid rgba(201,162,93,.08)}
+.panel:last-child{border-right:none}
+.panel-bg{position:absolute;inset:0;background-size:cover;background-position:center top;transform:scale(1.07);filter:brightness(.22) saturate(.5);transition:transform .85s ease,filter .5s ease}
+.pa .panel-bg{background-image:url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=900&q=80')}
+.pb .panel-bg{background-image:url('https://images.unsplash.com/photo-1571327073757-71d13c4c5b27?w=900&q=80')}
+.pc .panel-bg{background-image:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=900&q=80')}
+.pd .panel-bg{background-image:url('https://images.unsplash.com/photo-1516280030429-27b92ec09842?w=900&q=80')}
+.panel-ov{position:absolute;inset:0;background:linear-gradient(160deg,var(--purple-ov),rgba(8,8,8,.8));z-index:1}
+.panel-fog{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,var(--black),transparent);z-index:2}
+.panel-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(90px,13vw,160px);color:rgba(201,162,93,.04);z-index:2;pointer-events:none;user-select:none;transition:opacity .4s}
+.panel-col{position:absolute;bottom:48px;left:0;right:0;z-index:5;text-align:center;display:flex;flex-direction:column;align-items:center;gap:7px;transition:opacity .3s}
+.panel-col .dot{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.5}
+.panel-col .lbl{font-family:'Bebas Neue',sans-serif;font-size:clamp(13px,1.4vw,17px);letter-spacing:.3em;color:rgba(239,239,239,.75)}
+.panel-exp{position:absolute;inset:0;z-index:5;padding:90px 30px 40px;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .5s ease .1s,transform .5s ease .1s}
+.ptag{font-size:8.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.ptag::before{content:'';display:block;width:18px;height:1px;background:var(--gold)}
+.ptitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,68px);letter-spacing:.06em;line-height:.92;color:var(--offwhite);margin-bottom:16px}
+.ptitle span{color:var(--gold)}
+.pdesc{font-size:10px;font-weight:300;line-height:1.9;letter-spacing:.04em;color:rgba(239,239,239,.5);margin-bottom:20px;max-width:270px}
+.prates{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:24px}
+.pri{border-left:1px solid rgba(201,162,93,.3);padding-left:10px}
+.prl{font-size:7.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,162,93,.6);margin-bottom:2px}
+.prv{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,2.5vw,28px);color:var(--offwhite)}
+.pghost{display:inline-block;margin-top:8px;font-size:8.5px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(239,239,239,.35);text-decoration:none;transition:color .2s;background:none;border:none;cursor:pointer;padding:0}
+.pghost:hover{color:var(--gold)}
+.grid.open .panel{width:13%}
+.grid.open .panel.active{width:61%}
+.grid.open .panel:not(.active) .panel-col{opacity:.25}
+.grid.open .panel:not(.active) .panel-bg{filter:brightness(.1) saturate(.2)}
+.panel.active .panel-col{opacity:0}
+.panel.active .panel-exp{opacity:1;transform:translateY(0);pointer-events:all}
+.panel.active .panel-bg{transform:scale(1);filter:brightness(.2) saturate(.8)}
+.panel.active::after{content:'';position:absolute;top:15%;left:0;width:1.5px;height:70%;background:linear-gradient(to bottom,transparent,var(--gold) 30%,var(--gold2) 70%,transparent);z-index:6}
+
+/* TARIFS */
+#tarifs{background:var(--black);overflow-y:auto}
+.tarifs-inner{padding:100px 48px 60px;max-width:960px;margin:0 auto}
+.section-head{margin-bottom:48px}
+.section-eyebrow{font-size:9px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.section-eyebrow::after{content:'';flex:1;height:1px;background:rgba(201,162,93,.2)}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,72px);letter-spacing:.06em;line-height:.9}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(201,162,93,.1);margin-bottom:1px}
+.card{background:var(--black);padding:36px 28px;position:relative;overflow:hidden;transition:background .3s}
+.card:hover{background:#0f0f0f}
+.card-icon{font-size:22px;margin-bottom:20px;opacity:.7}
+.card-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.12em;color:var(--offwhite);margin-bottom:8px}
+.card-desc{font-size:10px;font-weight:300;line-height:1.8;color:var(--muted);margin-bottom:24px}
+.card-prices{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.cprice{display:flex;justify-content:space-between;align-items:center;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.05)}
+.cprice:last-child{border-bottom:none}
+.cplbl{font-size:9px;letter-spacing:.12em;color:rgba(239,239,239,.4)}
+.cpval{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold)}
+.card-cta{font-size:8.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--black);background:var(--gold);padding:11px 18px;border:none;cursor:pointer;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));transition:background .2s;width:100%;text-align:center}
+.card-cta:hover{background:var(--gold2)}
+.card-badge{position:absolute;top:20px;right:20px;font-size:7.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--black);background:var(--gold);padding:4px 10px}
+.tarif-note{margin-top:32px;padding:20px 24px;border:1px solid rgba(201,162,93,.12);font-size:10px;font-weight:300;line-height:1.9;color:rgba(239,239,239,.4);letter-spacing:.06em}
+.tarif-note strong{color:var(--gold);font-weight:600}
+
+/* MATERIEL */
+#materiel{background:var(--black);overflow-y:auto}
+.materiel-inner{padding:100px 48px 60px;max-width:960px;margin:0 auto}
+.gear-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:rgba(201,162,93,.1);margin-top:40px}
+.gear-card{background:var(--black);padding:28px 22px;transition:background .3s}
+.gear-card:hover{background:#0f0f0f}
+.gear-cat{font-size:8px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.gear-items{list-style:none;display:flex;flex-direction:column;gap:6px}
+.gear-items li{font-size:10px;font-weight:300;color:rgba(239,239,239,.55);letter-spacing:.04em;padding-left:10px;position:relative}
+.gear-items li::before{content:'–';position:absolute;left:0;color:rgba(201,162,93,.4)}
+.brand-logos{display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin-top:36px;padding:24px;border:1px solid rgba(201,162,93,.1)}
+.brand-logo{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.2em;color:rgba(239,239,239,.2);transition:color .2s;cursor:default}
+.brand-logo:hover{color:var(--gold)}
+
+/* CONTACT */
+#contact{background:var(--black)}
+.contact-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1516280030429-27b92ec09842?w=1400&q=80') center/cover;filter:brightness(.08) saturate(.3)}
+.contact-inner{position:relative;z-index:5;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;overflow-y:auto}
+.contact-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,100px);letter-spacing:.08em;line-height:.9;margin-bottom:40px}
+.contact-title span{color:var(--gold)}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:rgba(201,162,93,.1);width:100%;max-width:740px;margin-bottom:40px}
+.ccard{background:rgba(8,8,8,.95);padding:28px 20px;text-align:left}
+.ccard-lbl{font-size:8px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.ccard-val{font-size:11px;font-weight:300;color:rgba(239,239,239,.65);letter-spacing:.04em;line-height:1.6}
+.contact-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:36px}
+.wa-btn{display:inline-flex;align-items:center;gap:10px;font-size:9.5px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--black);background:var(--gold);padding:15px 26px;border:none;cursor:pointer;text-decoration:none;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:background .2s}
+.wa-btn:hover{background:var(--gold2)}
+.contact-genres{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(239,239,239,.2);margin-bottom:32px}
+.contact-sig{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.45em;color:rgba(201,162,93,.25)}
+
+.mobile-menu{display:none;position:fixed;inset:0;z-index:400;background:rgba(8,8,8,.97);flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobile-menu.open{opacity:1;pointer-events:all}
+.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:.25em;color:rgba(239,239,239,.7);text-decoration:none;cursor:pointer;transition:color .2s}
+.mobile-menu a:hover{color:var(--gold)}
+.menu-close{position:absolute;top:24px;right:28px;font-size:24px;cursor:pointer;color:var(--muted)}
+
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(15,15,15,.97);border:1px solid rgba(201,162,93,.35);color:var(--offwhite);font-size:10px;letter-spacing:.12em;padding:12px 24px;z-index:900;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:700px){
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  #panels .grid{flex-direction:column;overflow-y:auto}
+  .panel{width:100%!important;height:50vh;flex-shrink:0}
+  .panel.active .panel-exp{opacity:1;pointer-events:all;transform:none}
+  .panel-col{opacity:1!important}
+  .grid.open .panel{width:100%!important}
+  .tarifs-inner,.materiel-inner{padding:90px 20px 40px}
+  .cards-grid{grid-template-columns:1fr}
+  .gear-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="snow" id="snow"></div>
+
+<nav>
+  <div class="nav-logo"><span class="crown">♛</span> M<em>O</em>RE+L<em>i</em>FE</div>
+  <div class="nav-links">
+    <a onclick="go(0)" class="active" id="nl0">ACCUEIL</a>
+    <a onclick="go(1)" id="nl1">SERVICES</a>
+    <a onclick="go(2)" id="nl2">TARIFS</a>
+    <a onclick="go(3)" id="nl3">MATÉRIEL</a>
+    <a onclick="go(4)" id="nl4">CONTACT</a>
+  </div>
+  <div class="nav-burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="menu-close" onclick="toggleMenu()">✕</span>
+  <a onclick="go(0);toggleMenu()">ACCUEIL</a>
+  <a onclick="go(1);toggleMenu()">SERVICES</a>
+  <a onclick="go(2);toggleMenu()">TARIFS</a>
+  <a onclick="go(3);toggleMenu()">MATÉRIEL</a>
+  <a onclick="go(4);toggleMenu()">CONTACT</a>
+</div>
+
+<div class="pages">
+
+  <div class="page visible" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Ingénieur du Son &amp; Producteur</div>
+      <div class="hero-title">MORE<span>+</span><br>LiFE</div>
+      <div class="hero-sub">Studio · Paris · Niort · Monde</div>
+      <div class="hero-claim">Qualité Industry. Prix accessible. Ton son. Notre expertise.</div>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#" onclick="waMsg('Bonjour, je souhaite réserver une session studio avec MORE+LiFE. 🎤');return false">RÉSERVER UNE SESSION</a>
+        <a class="btn-outline" href="#" onclick="go(1);return false">VOIR LES SERVICES</a>
+      </div>
+      <div class="hero-locs">
+        <span>PARIS</span><span class="loc-sep">•</span>
+        <span>NIORT</span><span class="loc-sep">•</span>
+        <span>MONDE</span>
+      </div>
+    </div>
+    <div class="hero-scroll" onclick="go(1)">
+      <div class="scroll-line"></div>
+      <span>DÉCOUVRIR</span>
+    </div>
+  </div>
+
+  <div class="page" id="panels">
+    <div class="grid" id="pgrid">
+      <div class="panel pa" id="pa" onclick="ptoggle('pa')">
+        <div class="panel-bg"></div><div class="panel-ov"></div><div class="panel-fog"></div>
+        <div class="panel-num">01</div>
+        <div class="panel-col"><div class="dot"></div><div class="lbl">SESSION</div></div>
+        <div class="panel-exp">
+          <div class="ptag">Enregistrement Studio</div>
+          <div class="ptitle">SESSION<br><span>STUDIO</span></div>
+          <div class="pdesc">Enregistrement pro dans un environnement créatif. Pré-mix offert · Direction artistique incluse · Ingé son sur place.</div>
+          <div class="prates">
+            <div class="pri"><div class="prl">1H</div><div class="prv">45€</div></div>
+            <div class="pri"><div class="prl">À partir de 2H</div><div class="prv">35€/h</div></div>
+            <div class="pri"><div class="prl">Session 3H+</div><div class="prv">30€/h</div></div>
+          </div>
+          <a class="btn-primary" href="#" onclick="waMsg('Bonjour, je souhaite réserver une session enregistrement avec MORE+LiFE. Quelles sont vos disponibilités ? 🎤');return false;event.stopPropagation()">BOOKER UNE SESSION</a>
+        </div>
+      </div>
+      <div class="panel pb" id="pb" onclick="ptoggle('pb')">
+        <div class="panel-bg"></div><div class="panel-ov"></div><div class="panel-fog"></div>
+        <div class="panel-num">02</div>
+        <div class="panel-col"><div class="dot"></div><div class="lbl">BEATS</div></div>
+        <div class="panel-exp">
+          <div class="ptag">Prod Sur-Mesure</div>
+          <div class="ptitle">BEATS<br><span>&amp; PRODS</span></div>
+          <div class="pdesc">Productions exclusives, taillées pour toi. Trap · Drill · R&amp;B · Afro · Rap. Catalogue dispo sur demande.</div>
+          <div class="prates">
+            <div class="pri"><div class="prl">À partir de</div><div class="prv">80€</div></div>
+          </div>
+          <a class="btn-primary" href="#" onclick="waMsg('Bonjour, je veux commander un beat sur-mesure avec MORE+LiFE. 🎹');return false;event.stopPropagation()">COMMANDER UN BEAT</a>
+          <button class="pghost" onclick="waMsg('Bonjour, je voudrais écouter le catalogue de prods. 🎵');event.stopPropagation()">ÉCOUTER LE CATALOGUE</button>
+        </div>
+      </div>
+      <div class="panel pc" id="pc" onclick="ptoggle('pc')">
+        <div class="panel-bg"></div><div class="panel-ov"></div><div class="panel-fog"></div>
+        <div class="panel-num">03</div>
+        <div class="panel-col"><div class="dot"></div><div class="lbl">MIX/MASTER</div></div>
+        <div class="panel-exp">
+          <div class="ptag">Mixage &amp; Mastering</div>
+          <div class="ptitle">MIX<br><span>&amp; MASTER</span></div>
+          <div class="pdesc">Un son propre, puissant et prêt pour les plateformes. Rendu pro garanti.</div>
+          <div class="prates">
+            <div class="pri"><div class="prl">Mixage</div><div class="prv">50–100€</div></div>
+            <div class="pri"><div class="prl">Mastering</div><div class="prv">80€</div></div>
+            <div class="pri"><div class="prl">Pack</div><div class="prv">125€</div></div>
+          </div>
+          <a class="btn-primary" href="#" onclick="waMsg('Bonjour, j\'ai besoin d\'un mixage et/ou mastering. Quels sont vos délais et tarifs ? 🎚️');return false;event.stopPropagation()">ENVOYER MES STEMS</a>
+        </div>
+      </div>
+      <div class="panel pd" id="pd" onclick="ptoggle('pd')">
+        <div class="panel-bg"></div><div class="panel-ov"></div><div class="panel-fog"></div>
+        <div class="panel-num">04</div>
+        <div class="panel-col"><div class="dot"></div><div class="lbl">CONTACT</div></div>
+        <div class="panel-exp">
+          <div class="ptag">Paris · Niort · Monde</div>
+          <div class="ptitle">CON<br><span>TACT</span></div>
+          <div class="pdesc">Déplacements possibles partout dans le monde. Rap · Trap · Drill · R&amp;B · Afro · Podcast · Voix Off.</div>
+          <div class="prates">
+            <div class="pri"><div class="prl">Instagram</div><div style="font-size:11px;color:var(--offwhite);font-weight:300">@morelifetracks</div></div>
+            <div class="pri"><div class="prl">WhatsApp</div><div style="font-size:11px;color:var(--offwhite);font-weight:300">+33 6 99 32 69 31</div></div>
+          </div>
+          <a class="btn-primary" href="#" onclick="waMsg('Bonjour, je souhaite prendre contact avec MORE+LiFE Studio. 📩');return false;event.stopPropagation()">ENVOYER UN MESSAGE</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="tarifs">
+    <div class="tarifs-inner">
+      <div class="section-head">
+        <div class="section-eyebrow">Nos Prestations</div>
+        <div class="section-title">TARIFS</div>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🎤</div>
+          <div class="card-name">SESSION STUDIO</div>
+          <div class="card-desc">Enregistrement pro avec ingé son. Pré-mix et direction artistique inclus.</div>
+          <div class="card-prices">
+            <div class="cprice"><span class="cplbl">1 Heure</span><span class="cpval">45€</span></div>
+            <div class="cprice"><span class="cplbl">À partir de 2H</span><span class="cpval">35€/h</span></div>
+            <div class="cprice"><span class="cplbl">Session longue 3H+</span><span class="cpval">30€/h</span></div>
+          </div>
+          <button class="card-cta" onclick="waMsg('Bonjour, je souhaite réserver une session enregistrement. 🎤')">BOOKER</button>
+        </div>
+        <div class="card">
+          <div class="card-badge">SUR MESURE</div>
+          <div class="card-icon">🎹</div>
+          <div class="card-name">BEATS &amp; PRODS</div>
+          <div class="card-desc">Production sur mesure selon ton style et ta vision. Catalogue disponible.</div>
+          <div class="card-prices">
+            <div class="cprice"><span class="cplbl">À partir de</span><span class="cpval">80€</span></div>
+            <div class="cprice"><span class="cplbl">Selon style &amp; complexité</span><span class="cpval">—</span></div>
+          </div>
+          <button class="card-cta" onclick="waMsg('Bonjour, je veux un beat sur-mesure avec MORE+LiFE. 🎹')">COMMANDER</button>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎚️</div>
+          <div class="card-name">MIX &amp; MASTER</div>
+          <div class="card-desc">Son propre, puissant, prêt pour les plateformes. Pack disponible.</div>
+          <div class="card-prices">
+            <div class="cprice"><span class="cplbl">Mixage</span><span class="cpval">50–100€</span></div>
+            <div class="cprice"><span class="cplbl">Mastering</span><span class="cpval">80€</span></div>
+            <div class="cprice"><span class="cplbl">Pack Mix + Master</span><span class="cpval">125€</span></div>
+          </div>
+          <button class="card-cta" onclick="waMsg('Bonjour, j\'ai besoin d\'un mix et mastering. Quels sont vos délais ? 🎚️')">ENVOYER MES STEMS</button>
+        </div>
+      </div>
+      <div class="tarif-note">
+        <strong>Ingé son inclus</strong> dans toutes les sessions · <strong>Pré-mix offert</strong> · Aide artistique &amp; direction incluse · Déplacements possibles <strong>Paris · Niort · Monde</strong> · Paiement avant prestation
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="materiel">
+    <div class="materiel-inner">
+      <div class="section-head">
+        <div class="section-eyebrow">Setup Pro</div>
+        <div class="section-title">MATÉRIEL<br>&amp; LOGICIELS</div>
+      </div>
+      <div class="gear-grid">
+        <div class="gear-card">
+          <div class="gear-cat">Ordinateur</div>
+          <ul class="gear-items"><li>MacBook Pro M1 Max</li></ul>
+        </div>
+        <div class="gear-card">
+          <div class="gear-cat">Microphone</div>
+          <ul class="gear-items">
+            <li>Slate Digital ML-1</li>
+            <li>Émul. Neumann U47, U67</li>
+            <li>C800G, SM7B, etc.</li>
+          </ul>
+        </div>
+        <div class="gear-card">
+          <div class="gear-cat">Interface Audio</div>
+          <ul class="gear-items"><li>MOTU M2</li><li>SSL 2+ MKII</li></ul>
+        </div>
+        <div class="gear-card">
+          <div class="gear-cat">Monitoring</div>
+          <ul class="gear-items"><li>Adam Audio D3V</li></ul>
+        </div>
+        <div class="gear-card">
+          <div class="gear-cat">Plugins</div>
+          <ul class="gear-items"><li>Waves</li><li>UAD</li><li>Soundtoys</li><li>Cableguys</li><li>Antares Autotune</li></ul>
+        </div>
+        <div class="gear-card">
+          <div class="gear-cat">DAW</div>
+          <ul class="gear-items"><li>Pro Tools</li><li>Logic Pro</li><li>Ableton Live</li></ul>
+        </div>
+      </div>
+      <div class="brand-logos">
+        <span class="brand-logo">SLATE DIGITAL</span>
+        <span class="brand-logo">WAVES</span>
+        <span class="brand-logo">UNIVERSAL AUDIO</span>
+        <span class="brand-logo">PRO TOOLS</span>
+        <span class="brand-logo">ABLETON</span>
+        <span class="brand-logo">MOTU</span>
+        <span class="brand-logo">ADAM AUDIO</span>
+        <span class="brand-logo">SSL</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="contact">
+    <div class="contact-bg"></div>
+    <div class="contact-inner">
+      <div class="section-eyebrow" style="justify-content:center;margin-bottom:12px">Parlons de ton projet</div>
+      <div class="contact-title">CON<span>TACT</span></div>
+      <div class="contact-grid">
+        <div class="ccard"><div class="ccard-lbl">Instagram</div><div class="ccard-val">@morelifetracks</div></div>
+        <div class="ccard"><div class="ccard-lbl">WhatsApp</div><div class="ccard-val">+33 6 99 32 69 31</div></div>
+        <div class="ccard"><div class="ccard-lbl">Localisation</div><div class="ccard-val">Paris · Niort · Monde</div></div>
+        <div class="ccard"><div class="ccard-lbl">Genres</div><div class="ccard-val">Rap · Trap · Drill · R&amp;B · Afro · Voix Off · Podcast</div></div>
+      </div>
+      <div class="contact-btns">
+        <a class="wa-btn" href="#" onclick="waMsg('Bonjour, je souhaite réserver une session avec MORE+LiFE Studio. 🎤');return false">RÉSERVER MA SESSION</a>
+        <a class="wa-btn" href="#" onclick="waMsg('Bonjour, je veux commander un beat sur-mesure avec MORE+LiFE. 🎹');return false" style="background:transparent;color:var(--gold);border:1px solid rgba(201,162,93,.4);clip-path:none">COMMANDER UN BEAT</a>
+      </div>
+      <div class="contact-genres">RAP · TRAP · DRILL · R&amp;B · AFRO · VOIX OFF · PODCAST · ET PLUS</div>
+      <div class="contact-sig">♛ MORE+LiFE</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">Redirection WhatsApp...</div>
+
+<script>
+const phone='33699326931';
+let curPage=0;
+const pages=['hero','panels','tarifs','materiel','contact'];
+
+function go(i){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('visible'));
+  document.getElementById(pages[i]).classList.add('visible');
+  document.querySelectorAll('.nav-links a').forEach((a,j)=>a.classList.toggle('active',j===i));
+  curPage=i;
+}
+
+function waMsg(msg){
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+  setTimeout(()=>window.open('https://wa.me/'+phone+'?text='+encodeURIComponent(msg),'_blank'),300);
+}
+
+let cur=null;
+const pgrid=document.getElementById('pgrid');
+function ptoggle(id){
+  const el=document.getElementById(id);
+  if(cur===id){el.classList.remove('active');pgrid.classList.remove('open');cur=null}
+  else{document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));el.classList.add('active');pgrid.classList.add('open');cur=id}
+}
+
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') go(Math.min(curPage+1,4));
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') go(Math.max(curPage-1,0));
+  if(e.key==='Escape'){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));pgrid.classList.remove('open');cur=null}
+});
+
+const snow=document.getElementById('snow');
+for(let i=0;i<30;i++){
+  const f=document.createElement('div');f.className='flake';
+  const s=Math.random()*2.5+1;
+  f.style.cssText=`left:${Math.random()*100}%;width:${s}px;height:${s}px;opacity:${Math.random()*.4+.08};animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*10}s;`;
+  snow.appendChild(f);
+}
+</script>
+</body>
+</html>
