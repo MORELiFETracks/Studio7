@@ -99,7 +99,13 @@ a.c-value:hover{color:var(--offwhite)}
 .contact-ig{display:inline-flex;align-items:center;gap:14px;font-size:9px;font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:rgba(200,200,210,.3);text-decoration:none;border:1px solid rgba(200,200,210,.15);padding:12px 20px;transition:all .3s}
 .contact-ig:hover{color:var(--offwhite);border-color:rgba(200,200,210,.3)}
 .contact-sig{position:absolute;bottom:28px;left:0;right:0;font-size:9px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:rgba(200,200,210,.1);text-align:center;padding:0 20px;line-height:1.8}
-
+.contact-hero-img {
+  display: block;
+  width: 260px;
+  margin: 0 auto 2rem auto;
+  object-fit: contain;
+}
+  
 .particles{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 .particle{position:absolute;border-radius:50%;animation:float-up linear infinite}
 @keyframes float-up{0%{transform:translateY(100vh) translateX(0);opacity:0}10%{opacity:1}90%{opacity:.5}100%{transform:translateY(-10vh) translateX(var(--drift));opacity:0}}
@@ -150,7 +156,7 @@ a.c-value:hover{color:var(--offwhite)}
     <div class="hero-line-left"></div>
     <div class="hero-line-right"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow" data-fr="ARTISTE &middot; INGÉNIEUR DU SON &middot; PRODUCTEUR" data-en="ARTIST &middot; SOUND ENGINEER &middot; PRODUCER">ARTISTE &middot; INGÉNIEUR DU SON &middot; PRODUCTEUR</div>
+      <div class="hero-eyebrow" data-fr="COMPOSITEUR &middot; INGÉNIEUR DU SON &middot; PRODUCTEUR" data-en="BEATMAKER &middot; SOUND ENGINEER &middot; PRODUCER">COMPOSITEUR &middot; INGÉNIEUR DU SON &middot; PRODUCTEUR</div>
       <img class="hero-mascot" src="https://i.imgur.com/6dRaeJd.png" alt="Logo MORE+LiFE">
       <div class="hero-title-sub" data-fr="Qualité Industry. Prix accessible." data-en="Industry Quality. Accessible Pricing.">Qualité Industry. Prix accessible.</div>
       <div class="hero-descriptor">
@@ -180,7 +186,7 @@ a.c-value:hover{color:var(--offwhite)}
           <div class="ptitle">STUDIO<br>SESSION</div>
           <div class="pdesc" data-fr="Environnement professionnel, acoustique contrôlée. Tu arrives avec ton énergie &mdash; MORE+LiFE s'occupe du reste." data-en="Professional environment, controlled acoustics. You bring the energy &mdash; MORE+LiFE handles the rest.">Environnement professionnel, acoustique contrôlée. Tu arrives avec ton énergie &mdash; MORE+LiFE s'occupe du reste.</div>
           <div class="plinks">
-            <button class="plink" onclick="event.stopPropagation();go(2)" data-fr="BOOKER UNE SESSION" data-en="BOOK A SESSION">BOOKER UNE SESSION</button>
+            <button class="plink" onclick="event.stopPropagation();go(2)" data-fr="RESERVE TA SESSION" data-en="RESERVE UR SESSION">RESERVE TA SESSION</button>
             <button class="plink" onclick="event.stopPropagation();go(2)" data-fr="ME CONTACTER" data-en="CONTACT ME">ME CONTACTER</button>
           </div>
         </div>
@@ -237,6 +243,7 @@ a.c-value:hover{color:var(--offwhite)}
     <div class="contact-vline-l"></div>
     <div class="contact-vline-r"></div>
     <div class="contact-inner">
+  <img class="contact-hero-img" src="https://i.imgur.com/Ad6md8y.jpeg" alt="MORE+LIFE Sticker" />
       <div class="contact-eyebrow" data-fr="Parlons de ton projet" data-en="Let's talk about your project">Parlons de ton projet</div>
       <div class="contact-title">CONTACT</div>
       <div class="contact-items">
