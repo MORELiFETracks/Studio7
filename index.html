@@ -45,8 +45,8 @@ nav::after{content:'';position:absolute;inset:0;background:linear-gradient(to bo
 .hero-title-sub{font-family:'Cormorant',sans-serif;font-style:italic;font-size:clamp(12px,1.5vw,19px);font-weight:300;letter-spacing:.25em;color:rgba(200,200,210,.28);margin-bottom:28px;animation:fade-up .8s .2s ease both}
 .hero-descriptor{font-size:9px;font-weight:300;letter-spacing:.4em;text-transform:uppercase;color:rgba(232,228,220,.15);margin-bottom:40px;line-height:2;animation:fade-up .8s .3s ease both}
 .hero-descriptor span{color:rgba(200,200,210,.4)}
-.hero-cta{display:inline-block;font-size:9px;font-weight:400;letter-spacing:.4em;text-transform:uppercase;color:var(--offwhite);text-decoration:none;border-bottom:1px solid rgba(200,200,210,.2);padding:8px 0;animation:fade-up .8s .4s ease both;transition:all .3s}
-.hero-cta:hover{color:rgba(200,200,210,.7);border-bottom-color:rgba(200,200,210,.5)}
+.hero-cta{display:inline-block;font-size:9px;font-weight:400;letter-spacing:.4em;text-transform:uppercase;color:rgba(200,200,210,.3);text-decoration:none;border-bottom:1px solid rgba(200,200,210,.15);padding:8px 0;animation:fade-up .8s .4s ease both;transition:all .3s;background:none;border:none;cursor:pointer}
+.hero-cta:hover{color:rgba(200,200,210,.6);border-bottom-color:rgba(200,200,210,.3)}
 .hero-locs{position:absolute;bottom:32px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:18px;font-size:8px;letter-spacing:.4em;text-transform:uppercase;color:rgba(232,228,220,.15)}
 @keyframes fade-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
@@ -71,7 +71,7 @@ nav::after{content:'';position:absolute;inset:0;background:linear-gradient(to bo
 .ptitle{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(38px,5vw,68px);letter-spacing:.04em;line-height:.88;color:var(--offwhite);margin-bottom:18px}
 .pdesc{font-family:'Cormorant',sans-serif;font-style:italic;font-size:13px;font-weight:300;line-height:1.8;color:rgba(232,228,220,.4);margin-bottom:20px;max-width:260px}
 .plinks{display:flex;flex-direction:column;gap:10px}
-.plink{display:inline-block;font-size:8px;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,200,210,.35);text-decoration:none;border-bottom:1px solid rgba(200,200,210,.1);padding:6px 0;transition:all .3s}
+.plink{display:inline-block;font-size:8px;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,200,210,.35);text-decoration:none;border-bottom:1px solid rgba(200,200,210,.1);padding:6px 0;transition:all .3s;background:none;border:none;cursor:pointer}
 .plink:hover{color:var(--offwhite);border-bottom-color:rgba(200,200,210,.4)}
 .panel-accent{position:absolute;top:0;left:0;width:1.5px;height:0;background:linear-gradient(to bottom,transparent,rgba(107,63,160,.7) 40%,rgba(200,200,210,.3) 60%,transparent);z-index:7;transition:height .6s ease}
 .grid.open .panel{width:14%}
