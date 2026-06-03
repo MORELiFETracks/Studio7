@@ -99,7 +99,12 @@ a.c-value:hover{color:var(--offwhite)}
 .contact-ig{display:inline-flex;align-items:center;gap:14px;font-size:9px;font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:rgba(200,200,210,.3);text-decoration:none;border:1px solid rgba(200,200,210,.15);padding:12px 20px;transition:all .3s}
 .contact-ig:hover{color:var(--offwhite);border-color:rgba(200,200,210,.3)}
 .contact-sig{position:absolute;bottom:28px;left:0;right:0;font-size:9px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:rgba(200,200,210,.1);text-align:center;padding:0 20px;line-height:1.8}
-
+.contact-hero-img {
+  display: block;
+  width: 260px;
+  margin: 2rem auto 0 auto;
+  object-fit: contain;
+}
   
 .particles{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 .particle{position:absolute;border-radius:50%;animation:float-up linear infinite}
@@ -234,7 +239,7 @@ a.c-value:hover{color:var(--offwhite)}
     </div>
   </div>
 
-  <div class="page" id="contact" style="background-image: url('https://i.imgur.com/Ad6md8y.jpeg'); background-size: contain; background-repeat: no-repeat; background-position: top center;">
+  <div class="page" id="contact" 
     <div class="contact-vline-l"></div>
     <div class="contact-vline-r"></div>
     <div class="contact-inner">
@@ -254,6 +259,8 @@ a.c-value:hover{color:var(--offwhite)}
         <span>&#9819;</span>
         <span data-fr="REJOINS LE LiFER'S GANG" data-en="JOIN THE LiFER'S GANG">REJOINS LE LiFER'S GANG</span>
       </a>
+       <img class="contact-hero-img" src="https://i.imgur.com/Ad6md8y.jpeg" alt="MORE+LIFE Sticker" />
+      <div class="contact-sig">
       <div class="contact-sig">
         &#9819; MORE+LiFE<br>
         <span data-fr="LA MONTÉE DE LA MARTINIQUE &amp; DE PARIS VERS LE MONDE" data-en="THE RISE FROM MARTINIQUE &amp; PARIS TO THE WORLD">LA MONTÉE DE LA MARTINIQUE &amp; DE PARIS VERS LE MONDE</span>
